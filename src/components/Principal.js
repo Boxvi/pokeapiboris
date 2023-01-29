@@ -23,7 +23,7 @@ export function Principal() {
     //variable para guardar el pokemon seleccionado
     const [pokeDex, setPokeDex] = useState();
 
-   // const  [numero, setNumero] = useState();
+    // const  [numero, setNumero] = useState();
 
     const ComponenteIzquierdo = () => <h1 className="text-center">LISTADO DE LOS POKEMONES </h1>;
     const ComponenteDerecho = () => <h1 className="text-center">DETALLES DEL POKEMON</h1>;
@@ -61,7 +61,7 @@ export function Principal() {
             <div className={"p-5 fondo"}>
 
                 <div className="row">
-                    <div className="col-9">
+                    <div className="col-8">
                         <ComponenteIzquierdo/>
 
                         <div className="text-center p-2">
@@ -85,8 +85,7 @@ export function Principal() {
                         </div>
                     </div>
 
-
-                    <div className="col-3">
+                    <div className="col-4">
                         <ComponenteDerecho/>
                         <Detalle data={pokeDex}/>
                     </div>
@@ -96,103 +95,4 @@ export function Principal() {
 
         </>
     )
-
 }
-
-/*
-
-                            /
-
-                    <button type="button" className="btn btn-success BsArrowLeft" disabled={currentPage === 1}
-                            onClick={() => setCurrentPage(currentPage - 1)}>
-                        ANTERIOR
-                    </button>
-
-                    <button type="button" className="btn btn-primary" disabled={currentPage === totalPages}
-                            onClick={() => setCurrentPage(currentPage + 1)}>
-
-                    </button>
-
-
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(null);
-    const [pokemonData, setPokemonData] = useState({});
-
-
-    //METODO PARA LLAMAR A LOS POKEMONES
-    useEffect(() => {
-
-        async function fetchData() {
-            //obtener los pokemons en la pagina actual
-            const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${(currentPage - 1) * 20}`);
-           // setPokemonList(response.data.results)
-            console.log(response.data.results)
-            getPokemon(response.data.results)
-            setTotalPages(Math.ceil(response.data.count / 20));
-        }
-
-        fetchData().then(r => {
-            console.log(r)
-        });
-    }, [currentPage]);
-
-    const getPokemon = async (response) => {
-        response.map(async (pokemon) => {
-            const resultado = await axios.get(pokemon.url);
-
-            setPokemonList((prev) => [...prev, resultado.data]);
-            /*
-            setPokemonList(state => {
-                state = [...state, resultado.data]
-                state.sort((a, b) => a.id > b.id ? 1 : -1)
-                return state;
-            }
-
-            // setPokemonList((prev) => [...prev, resultado.data]);
-            // console.log(resultado.data)
-            //setPokemonList(resultado.data)
-
-            //console.log(pokemonList)
-
-
-        });
-    };
-
-
-    return (
-        <div className="p-5">
-
-
-
-            <div className="row row-cols-1 row-cols-md-6 g-4">
-                <>
-
-
-                    {pokemonList.map((pokemon) => (
-                        <div className="col" key={pokemon.name} id={pokemon.name}>
-                            <div className="card">
-                                <img
-                                    src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemon.id + '.png'}/>
-
-                                <div className="card-body">
-                                    <h5 className="card-title">{pokemon.name}</h5>
-                                    <p className="card-text">{pokemon.height}</p>
-                                    <p className="card-text">{pokemon.weight}</p>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    ))}
-
-
-                </>
-            </div>
-
-
-        </div>
-    )
-
-}
-*/
