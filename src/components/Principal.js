@@ -60,7 +60,54 @@ export function Principal() {
         <>
             <div className={"p-5 fondo"}>
 
+
+                <div className="row row-cols-1 row-cols-md-2 g-4">
+
+                    <div className="col col-lg-4">
+
+                        <div className="card p-3">
+                            <ComponenteDerecho/>
+                            <Detalle data={pokeDex}/>
+                        </div>
+                    </div>
+
+                    <div className="col col-lg-8">
+                        <div className="card p-3">
+                            <ComponenteIzquierdo/>
+
+                            <div className="text-center p-2">
+                                <div className="d-grid gap-2 d-md-block">
+
+                                    {anteriorUrl && <button onClick={() => {
+                                        setPokemonList([])
+                                        setUrl(anteriorUrl)
+                                    }} className="btn btn-success">ANTERIOR</button>}
+
+                                    {siguienteUrl && <button onClick={() => {
+                                        setPokemonList([])
+                                        setUrl(siguienteUrl)
+                                    }} className="btn btn-primary">SIGUIENTE</button>}
+
+                                </div>
+                            </div>
+
+                            <div className="row row-cols-1 row-cols-md-3 g-4">
+                                <Cards pokemon={pokemonList} loading={loading}
+                                       infoPokemon={pokee => setPokeDex(pokee)}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </>
+    )
+}
+
+/*
                 <div className="row">
+
+
                     <div className="col-8">
                         <ComponenteIzquierdo/>
 
@@ -89,10 +136,4 @@ export function Principal() {
                         <ComponenteDerecho/>
                         <Detalle data={pokeDex}/>
                     </div>
-                </div>
-
-            </div>
-
-        </>
-    )
-}
+                </div>*/

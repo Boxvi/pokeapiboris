@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Evoluciones from "./Evoluciones";
+import './estilo.css'
 
 const Detalle = (numero) => {
 
@@ -127,7 +128,9 @@ const Detalle = (numero) => {
                     </ul>
                     <br/>
 
-                    <ul className="list-group">Movimiento(s)
+
+                    <ul className="list-group">Movimiento(s)</ul>
+                    <ul className="list-group scrollbarr">
                         {
                             pokemon.moves.map((movimiento) => {
                                 return (
