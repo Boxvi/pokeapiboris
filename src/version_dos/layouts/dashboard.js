@@ -1,9 +1,16 @@
-import {fetchData} from "../utils/fetchData";
-import {Suspense} from "react";
-import {Sidenav} from "../widgets/layout";
-import {Route, Routes} from "react-router-dom";
-import Types from "../pages/dashboard/types";
+import {Routes, Route} from "react-router-dom";
+import {Cog6ToothIcon} from "@heroicons/react/24/solid";
+import {IconButton} from "@material-tailwind/react";
+import {
+    Configurator,
+    DashboardNavbar,
+    Footer,
+    Sidenav
+} from "../widgets/layout";
+import {setOpenConfigurator, useMaterialTailwindController} from "../context";
 import All from "../pages/dashboard/all";
+import Types from "../pages/dashboard/types";
+import {fetchData} from "../utils/fetchData";
 
 
 const URL = process.env.REACT_APP_APIURL + 'type';
@@ -11,6 +18,8 @@ const URL = process.env.REACT_APP_APIURL + 'type';
 const API = fetchData(URL)
 
 export function Dashboard() {
+    const [controller, dispatch] = useMaterialTailwindController();
+    const {sidenavType} = controller;
 
     const data = [API.read()];
     return (
@@ -21,6 +30,17 @@ export function Dashboard() {
             />
 
             <div className="p-4 xl:ml-80">
+                <DashboardNavbar/>
+                <Configurator/>
+                <IconButton
+                    size="lg"
+                    color="white"
+                    className="fixed bottom-8 right-8 z-40 rounded-full shadow-blue-gray-900/10"
+                    ripple={false}
+                    onClick={() => setOpenConfigurator(dispatch, true)}
+                >
+                    <Cog6ToothIcon className="h-5 w-5"/>
+                </IconButton>
 
                 <Routes>
                     <Route path={'/todos'} element={<All/>}/>

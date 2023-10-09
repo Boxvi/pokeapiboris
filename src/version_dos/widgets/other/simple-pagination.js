@@ -1,11 +1,9 @@
-import SimplePagination from "../../widgets/other/simple-pagination";
-import React, {useEffect, useState} from "react";
+import React, {useState, useEffect} from 'react';
 import {IconButton, Typography} from "@material-tailwind/react";
 import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/24/solid";
-import GradientBorder from "../../widgets/cards/gradient-border";
 
-export function All() {
 
+export function SimplePagination() {
     const [active, setActive] = useState(1);
     const [offset, setOffset] = useState(0);
     const limit = 20; // El número de elementos por página
@@ -23,6 +21,7 @@ export function All() {
         fetchData();
     }, [offset]);
 
+    console.log(data)
 
     const next = () => {
         if (active < Math.ceil(totalItems / limit)) {
@@ -40,41 +39,11 @@ export function All() {
 
     return (
         <>
-
-            <div className="flex items-center gap-8">
-                <IconButton
-                    size="sm"
-                    variant="outlined"
-                    onClick={prev}
-                    disabled={active === 1}
-                >
-                    <ArrowLeftIcon strokeWidth={2} className="h-4 w-4"/>
-                </IconButton>
-
-                <Typography color="gray" className="font-normal">
-                    Page <strong className="text-gray-900">{active}</strong> of{" "}
-                    <strong className="text-gray-900">{Math.ceil(totalItems / limit)}</strong>
-                </Typography>
-
-
-                <IconButton
-                    size="sm"
-                    variant="outlined"
-                    onClick={next}
-                    disabled={active === Math.ceil(totalItems / limit)}
-                >
-                    <ArrowRightIcon strokeWidth={2} className="h-4 w-4"/>
-                </IconButton>
+            <div>
+                {JSON.stringify(data)}
             </div>
 
 
-            <section
-                className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
-                {data.map((pokemon) => (
-                    <GradientBorder nombre={pokemon.name}/>
-                ))}
-            </section>
-
             <div className="flex items-center gap-8">
                 <IconButton
                     size="sm"
@@ -99,12 +68,64 @@ export function All() {
                 >
                     <ArrowRightIcon strokeWidth={2} className="h-4 w-4"/>
                 </IconButton>
+
             </div>
 
         </>
-
     );
-
 }
 
-export default All;
+export default SimplePagination;
+
+
+/*
+import React from "react";
+
+import {IconButton, Typography} from "@material-tailwind/react";
+import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/24/outline";
+
+export function SimplePagination() {
+
+    const [active, setActive] = React.useState(1);
+
+    const next = () => {
+        if (active === 10) return;
+        setActive(active + 1);
+    };
+
+    const prev = () => {
+        if (active === 1) return;
+        setActive(active - 1);
+    };
+
+    return (
+        <div className="flex items-center gap-8">
+            <IconButton
+                size="sm"
+                variant="outlined"
+                onClick={prev}
+                disabled={active === 1}
+            >
+                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4"/>
+            </IconButton>
+
+            <Typography color="gray" className="font-normal">
+                Page <strong className="text-gray-900">{active}</strong> of{" "}
+                <strong className="text-gray-900">10</strong>
+            </Typography>
+
+            <IconButton
+                size="sm"
+                variant="outlined"
+                onClick={next}
+                disabled={active === 10}
+            >
+                <ArrowRightIcon strokeWidth={2} className="h-4 w-4"/>
+            </IconButton>
+
+        </div>
+    )
+}
+
+export default SimplePagination;
+ */

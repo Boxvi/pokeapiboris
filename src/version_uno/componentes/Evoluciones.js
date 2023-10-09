@@ -39,7 +39,6 @@ const Evoluciones = ({evolucion1}) => {
                             <div className="card-body">
                                 <p className="card-text">P: {pokemon.weight} Kg </p>
                                 <p className="card-text">A: {pokemon.height} cm</p>
-
                             </div>
                         </div>
                     </div>

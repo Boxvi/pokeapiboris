@@ -1,6 +1,12 @@
 import {useMaterialTailwindController} from "../../context";
 import {Avatar, Button, Typography} from "@material-tailwind/react";
 import {Link, NavLink} from "react-router-dom";
+import {HomeIcon} from "@heroicons/react/24/outline";
+import TypeIcon from "../../utils/type-icon";
+
+const icon = {
+    className: "w-5 h-5 text-inherit",
+};
 
 export function Sidenav({brandImg, brandName, routes, index}) {
 
@@ -19,7 +25,7 @@ export function Sidenav({brandImg, brandName, routes, index}) {
             } ${
                 openSidenav ? "translate-x-0" : "-translate-x-80"
             } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0`}
-            style={{ maxHeight: "calc(100vh - 32px)", overflowY: "auto" }}
+            style={{maxHeight: "calc(100vh - 32px)", overflowY: "auto"}}
         >
             <div
                 className={`relative border-b ${
@@ -41,15 +47,6 @@ export function Sidenav({brandImg, brandName, routes, index}) {
             <div className="m-4">
                 {routes.map(({count, next, previous, results}, key) => (
                     <ul key={key} className="mb-4 flex flex-col gap-1">
-                        <li className="mx-3.5 mt-4 mb-2">
-                            <Typography
-                                variant="small"
-                                color={sidenavType === "dark" ? "white" : "blue-gray"}
-                                className="font-black uppercase opacity-75"
-                            >
-                                TIPOS
-                            </Typography>
-                        </li>
 
                         <li>
                             <NavLink to={`/version_dos/todos`}>
@@ -66,6 +63,7 @@ export function Sidenav({brandImg, brandName, routes, index}) {
                                         className="flex items-center gap-4 px-4 capitalize"
                                         fullWidth
                                     >
+                                        <HomeIcon {...icon} />
                                         <Typography
                                             color="inherit"
                                             className="font-medium capitalize"
@@ -93,6 +91,7 @@ export function Sidenav({brandImg, brandName, routes, index}) {
                                             className="flex items-center gap-4 px-4 capitalize"
                                             fullWidth
                                         >
+                                            <TypeIcon name={name}/>
                                             <Typography
                                                 color="inherit"
                                                 className="font-medium capitalize"
